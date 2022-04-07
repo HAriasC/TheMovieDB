@@ -5,8 +5,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface PeliculaLocalDataSource {
 
-    suspend fun findById(id: Int): Flow<Pelicula>
-    suspend fun getAll(): Flow<List<Pelicula>>
+    fun findById(id: Int): Flow<Pelicula>
+    fun getAll(): Flow<List<Pelicula>>
     suspend fun update(pelicula: Pelicula)
     suspend fun save(peliculas: List<Pelicula>)
     suspend fun delete(pelicula: Pelicula)

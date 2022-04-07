@@ -1,6 +1,5 @@
 package com.example.moviedbapp.framework.data.local
 
-import androidx.lifecycle.asLiveData
 import com.example.moviedbapp.data.source.PeliculaLocalDataSource
 import com.example.moviedbapp.domain.Pelicula
 import com.example.moviedbapp.utils.toRoomPelicula
@@ -13,11 +12,11 @@ import kotlinx.coroutines.withContext
 class RoomDataSource(dataBase: AppDatabase): PeliculaLocalDataSource {
 
     private val peliculaDao = dataBase.peliculaDao()
-    override suspend fun findById(id: Int): Flow<Pelicula> {
+    override fun findById(id: Int): Flow<Pelicula> {
         return peliculaDao.findById(id).map { it.toDomainPelicula() }
     }
 
-    override suspend fun getAll(): Flow<List<Pelicula>> {
+    override fun getAll(): Flow<List<Pelicula>> {
         return peliculaDao.getAll().map { it.map { it.toDomainPelicula() } }
     }
 
@@ -37,6 +36,8 @@ class RoomDataSource(dataBase: AppDatabase): PeliculaLocalDataSource {
         peliculaDao.delete()
     }
 
-    override suspend fun isEmpty(): Boolean = withContext(Dispatchers.IO) {peliculaDao.size() <= 0}
+    override suspend fun isEmpty(): Boolean = withContext(Dispatchers.Default){
+        peliculaDao.size() <= 0
+    }
 
 }

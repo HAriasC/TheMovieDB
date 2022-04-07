@@ -16,11 +16,11 @@ interface PeliculaDao {
     fun size(): Int
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertAll(peliculas: List<Pelicula>)
+    suspend fun insertAll(peliculas: List<Pelicula>)
 
     @Update
-    fun update(pelicula: Pelicula)
+    suspend fun update(pelicula: Pelicula)
 
     @Delete
-    fun delete(vararg peliculas: Pelicula)
+    suspend fun delete(vararg peliculas: Pelicula)
 }

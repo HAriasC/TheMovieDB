@@ -13,7 +13,7 @@ class PeliculasRepository(
 
     suspend fun getPeliculas(): Flow<List<Pelicula>> {
         if (peliculaLocalDataSource.isEmpty()) {
-            peliculaRemoteDataSource.getFromApiRest(apiKey)
+            peliculaLocalDataSource.save(peliculaRemoteDataSource.getFromApiRest(apiKey = apiKey))
         }
         return peliculaLocalDataSource.getAll()
     }
