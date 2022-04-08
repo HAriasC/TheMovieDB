@@ -1,4 +1,4 @@
-package com.example.moviedbapp.data
+package com.example.moviedbapp.framework.data.remote.model
 
 /**
  * A generic class that holds a value with its loading status.

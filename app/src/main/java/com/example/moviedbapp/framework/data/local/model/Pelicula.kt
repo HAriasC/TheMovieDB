@@ -1,4 +1,4 @@
-package com.example.moviedbapp.framework.data.local
+package com.example.moviedbapp.framework.data.local.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

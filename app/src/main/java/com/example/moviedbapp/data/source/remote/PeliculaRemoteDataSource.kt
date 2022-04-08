@@ -1,4 +1,4 @@
-package com.example.moviedbapp.data.source
+package com.example.moviedbapp.data.source.remote
 
 import com.example.moviedbapp.domain.Pelicula
 

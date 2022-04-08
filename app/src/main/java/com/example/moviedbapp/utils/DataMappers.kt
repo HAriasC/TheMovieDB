@@ -1,8 +1,8 @@
 package com.example.moviedbapp.utils
 
 import com.example.moviedbapp.domain.Pelicula
-import com.example.moviedbapp.framework.data.local.Pelicula as EntityPelicula
-import com.example.moviedbapp.framework.data.remote.Pelicula as ResultPelicula
+import com.example.moviedbapp.framework.data.local.model.Pelicula as EntityPelicula
+import com.example.moviedbapp.framework.data.remote.model.Pelicula as ResultPelicula
 
 fun Pelicula.toRoomPelicula(): EntityPelicula =
     EntityPelicula(id, title, overview, backdrop_path, poster_path, release_date, vote_average)

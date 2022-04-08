@@ -1,7 +1,9 @@
 package com.example.moviedbapp.framework.data.local
 
-import com.example.moviedbapp.data.source.PeliculaLocalDataSource
+import androidx.paging.PagingSource
+import com.example.moviedbapp.data.source.local.PeliculaLocalDataSource
 import com.example.moviedbapp.domain.Pelicula
+import com.example.moviedbapp.framework.data.local.model.Pelicula as PeliculaDao
 import com.example.moviedbapp.utils.toRoomPelicula
 import com.example.moviedbapp.utils.toDomainPelicula
 import kotlinx.coroutines.Dispatchers
@@ -18,6 +20,10 @@ class RoomDataSource(dataBase: AppDatabase): PeliculaLocalDataSource {
 
     override fun getAll(): Flow<List<Pelicula>> {
         return peliculaDao.getAll().map { it.map { it.toDomainPelicula() } }
+    }
+
+    override fun getAllPaginated(): PagingSource<Int, PeliculaDao> {
+        return peliculaDao.getAllPaginated()
     }
 
     override suspend fun update(pelicula: Pelicula) {

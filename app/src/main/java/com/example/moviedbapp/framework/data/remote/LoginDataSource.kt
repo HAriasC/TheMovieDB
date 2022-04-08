@@ -1,8 +1,8 @@
-package com.example.moviedbapp.data
+package com.example.moviedbapp.framework.data.remote
 
 import android.util.Log
-import com.example.moviedbapp.data.model.LoggedInUser
 import com.example.moviedbapp.domain.Usuario
+import com.example.moviedbapp.framework.data.remote.model.Result
 import java.io.IOException
 import javax.inject.Inject
 

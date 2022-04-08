@@ -2,10 +2,9 @@ package com.example.moviedbapp.framework.di
 
 import android.app.Application
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.example.moviedbapp.R
-import com.example.moviedbapp.data.source.PeliculaLocalDataSource
-import com.example.moviedbapp.data.source.PeliculaRemoteDataSource
+import com.example.moviedbapp.data.source.local.PeliculaLocalDataSource
+import com.example.moviedbapp.data.source.remote.PeliculaRemoteDataSource
 import com.example.moviedbapp.framework.data.local.AppDatabase
 import com.example.moviedbapp.framework.data.local.RoomDataSource
 import com.example.moviedbapp.framework.data.remote.RetrofitDataSource

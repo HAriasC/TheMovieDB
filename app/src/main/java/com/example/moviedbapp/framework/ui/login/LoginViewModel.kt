@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Patterns
 import androidx.lifecycle.viewModelScope
-import com.example.moviedbapp.data.Result
+import com.example.moviedbapp.framework.data.remote.model.Result
 
 import com.example.moviedbapp.R
 import com.example.moviedbapp.usecases.IniciarSesion

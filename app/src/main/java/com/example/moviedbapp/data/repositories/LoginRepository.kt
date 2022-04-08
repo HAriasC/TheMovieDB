@@ -1,8 +1,7 @@
 package com.example.moviedbapp.data.repositories
 
-import com.example.moviedbapp.data.LoginDataSource
-import com.example.moviedbapp.data.Result
-import com.example.moviedbapp.data.model.LoggedInUser
+import com.example.moviedbapp.framework.data.remote.LoginDataSource
+import com.example.moviedbapp.framework.data.remote.model.Result
 import com.example.moviedbapp.domain.Usuario
 import javax.inject.Inject
 

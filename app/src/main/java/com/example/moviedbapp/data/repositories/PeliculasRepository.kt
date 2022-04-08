@@ -1,8 +1,10 @@
 package com.example.moviedbapp.data.repositories
 
-import com.example.moviedbapp.data.source.PeliculaLocalDataSource
-import com.example.moviedbapp.data.source.PeliculaRemoteDataSource
+import androidx.paging.PagingSource
+import com.example.moviedbapp.data.source.local.PeliculaLocalDataSource
+import com.example.moviedbapp.data.source.remote.PeliculaRemoteDataSource
 import com.example.moviedbapp.domain.Pelicula
+import com.example.moviedbapp.framework.data.local.model.Pelicula as PeliculaDao
 import kotlinx.coroutines.flow.Flow
 
 class PeliculasRepository(
@@ -18,5 +20,13 @@ class PeliculasRepository(
         return peliculaLocalDataSource.getAll()
     }
 
+    suspend fun getPeliculasPaginated(): PagingSource<Int, PeliculaDao> {
+        return peliculaLocalDataSource.getAllPaginated()
+    }
+
     suspend fun findById(id: Int): Flow<Pelicula> = peliculaLocalDataSource.findById(id)
+
+    fun getLocalSource() = peliculaLocalDataSource
+
+    fun getRomoteSource() = peliculaRemoteDataSource
 }

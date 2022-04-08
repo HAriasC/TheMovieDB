@@ -1,6 +1,6 @@
 package com.example.moviedbapp.usecases
 
-import com.example.moviedbapp.data.Result
+import com.example.moviedbapp.framework.data.remote.model.Result
 import com.example.moviedbapp.data.repositories.LoginRepository
 import com.example.moviedbapp.domain.Usuario
 

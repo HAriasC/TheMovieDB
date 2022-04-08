@@ -1,8 +1,8 @@
 package com.example.moviedbapp.framework.di
 
 import com.example.moviedbapp.data.repositories.PeliculasRepository
-import com.example.moviedbapp.data.source.PeliculaLocalDataSource
-import com.example.moviedbapp.data.source.PeliculaRemoteDataSource
+import com.example.moviedbapp.data.source.local.PeliculaLocalDataSource
+import com.example.moviedbapp.data.source.remote.PeliculaRemoteDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
