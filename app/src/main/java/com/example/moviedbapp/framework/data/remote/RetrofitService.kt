@@ -26,6 +26,17 @@ object RetrofitService {
         }
 }
 
+object AuthRetrofitService {
+
+    val service: AuthService = Retrofit.Builder()
+        .baseUrl("https://56e69111-1a89-4433-a128-b0f5361d6952.mock.pstmn.io/")
+        .client(OkHttpClient())
+        .addConverterFactory(GsonConverterFactory.create())
+        .build().run {
+            create(AuthService::class.java)
+        }
+}
+
 class TokenInterceptor (private val apiKey: String) : Interceptor {
 
     companion object {

@@ -1,14 +1,13 @@
 package com.example.moviedbapp.framework.ui.detail
 
 import android.os.Bundle
-import android.widget.TextView
 import androidx.activity.viewModels
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.example.moviedbapp.R
 import com.example.moviedbapp.databinding.ActivityDetalleBinding
 import com.example.moviedbapp.utils.loadUrl
+import com.example.moviedbapp.utils.setTextSpanStart
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,9 +26,9 @@ class DetalleActivity : AppCompatActivity() {
             binding.apply {
                 toolbar.title = it.title+""
                 imagen.loadUrl("https://image.tmdb.org/t/p/w780${it.backdrop_path}")
-                findViewById<TextView>(R.id.tNota).text = "${it.vote_average}"
-                findViewById<TextView>(R.id.tFecha).text = "${it.release_date}"
-                findViewById<TextView>(R.id.tResumen).text = "${it.overview}"
+                include.tNota?.text = "Puntuación promédio: ${it.vote_average}"
+                include.tFecha?.text = "Fecha de lanzamiento: ${it.release_date}"
+                include.tResumen?.setTextSpanStart("Resumen: ${it.overview}", 7)
             }
         })
 

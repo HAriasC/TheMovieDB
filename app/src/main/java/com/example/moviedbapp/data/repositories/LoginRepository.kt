@@ -3,6 +3,10 @@ package com.example.moviedbapp.data.repositories
 import com.example.moviedbapp.framework.data.remote.LoginDataSource
 import com.example.moviedbapp.framework.data.remote.model.Result
 import com.example.moviedbapp.domain.Usuario
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.conflate
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 /**
@@ -30,15 +34,9 @@ class LoginRepository @Inject constructor(val dataSource: LoginDataSource) {
         dataSource.logout()
     }
 
-    fun login(username: String, password: String): Result<Usuario> {
-        // handle login
+    suspend fun login(username: String, password: String): Flow<Result<Usuario>> {
         val result = dataSource.login(username, password)
-
-        if (result is Result.Success) {
-            setLoggedInUser(result.data)
-        }
-
-        return result
+        return result.flowOn(Dispatchers.Default).conflate()
     }
 
     private fun setLoggedInUser(loggedInUser: Usuario) {

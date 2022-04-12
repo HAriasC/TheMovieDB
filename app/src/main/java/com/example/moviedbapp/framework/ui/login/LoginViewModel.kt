@@ -11,6 +11,7 @@ import com.example.moviedbapp.R
 import com.example.moviedbapp.usecases.IniciarSesion
 import kotlinx.coroutines.launch
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,13 +26,13 @@ class LoginViewModel @Inject constructor(private val iniciarSesion: IniciarSesio
     fun login(username: String, password: String) {
         // can be launched in a separate asynchronous job
         viewModelScope.launch {
-            val result = iniciarSesion.invoke(username, password)
-
-            if (result is Result.Success) {
-                _loginResult.value =
-                    LoginResult(success = LoggedInUserView(displayName = result.data.nombre))
-            } else {
-                _loginResult.value = LoginResult(error = R.string.login_failed)
+            iniciarSesion.invoke(username, password).collect {
+                if (it is Result.Success) {
+                    _loginResult.value =
+                        LoginResult(success = LoggedInUserView(displayName = it.data.nombre))
+                } else {
+                    _loginResult.value = LoginResult(error = R.string.login_failed)
+                }
             }
         }
     }

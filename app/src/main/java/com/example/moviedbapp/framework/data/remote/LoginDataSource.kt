@@ -1,9 +1,10 @@
 package com.example.moviedbapp.framework.data.remote
 
-import android.util.Log
 import com.example.moviedbapp.domain.Usuario
 import com.example.moviedbapp.framework.data.remote.model.Result
-import java.io.IOException
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import java.lang.Exception
 import javax.inject.Inject
 
 /**
@@ -11,14 +12,16 @@ import javax.inject.Inject
  */
 class LoginDataSource @Inject constructor() {
 
-    fun login(username: String, password: String): Result<Usuario> {
-        try {
-            // TODO: handle loggedInUser authentication
-            Log.e("LOG", java.util.UUID.randomUUID().toString())
-            val fakeUser = Usuario(1, "Jane Doe", "", "")
-            return Result.Success(fakeUser)
-        } catch (e: Throwable) {
-            return Result.Error(IOException("Error logging in", e))
+    suspend fun login(username: String, password: String): Flow<Result<Usuario>> {
+        return flow {
+            val result = AuthRetrofitService.service.login(username, password)
+            if (result.isSuccessful) {
+                emit(Result.Success(result.body() as Usuario))
+            } else {
+                val mensaje = result.errorBody().toString()
+                result.errorBody()?.close()
+                emit(Result.Error(Exception(mensaje)))
+            }
         }
     }
 
