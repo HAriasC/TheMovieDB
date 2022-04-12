@@ -2,6 +2,7 @@ package com.example.moviedbapp.framework.ui.main
 
 import com.example.moviedbapp.data.repositories.PeliculasRepository
 import com.example.moviedbapp.usecases.ObtenerPeliculas
+import com.example.moviedbapp.usecases.ObtenerPeliculasPaginadas
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,4 +16,8 @@ class MainActivityModule {
     @Provides
     @ViewModelScoped
     fun getPeliculasProvider(peliculasRepository: PeliculasRepository) = ObtenerPeliculas(peliculasRepository)
+
+    @Provides
+    @ViewModelScoped
+    fun getPeliculasPaginadasProvider(peliculasRepository: PeliculasRepository) = ObtenerPeliculasPaginadas(peliculasRepository)
 }

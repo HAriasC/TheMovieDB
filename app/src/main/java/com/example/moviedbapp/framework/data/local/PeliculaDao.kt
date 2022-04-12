@@ -28,4 +28,7 @@ interface PeliculaDao {
 
     @Delete
     suspend fun delete(vararg peliculas: Pelicula)
+
+    @Query("DELETE FROM pelicula")
+    suspend fun deleteAll()
 }

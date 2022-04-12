@@ -4,5 +4,5 @@ import com.example.moviedbapp.domain.Pelicula
 
 interface PeliculaRemoteDataSource {
 
-    suspend fun getFromApiRest(page: Int = 1, apiKey: String): List<Pelicula>
+    suspend fun getFromApiRest(page: Int = 1): List<Pelicula>
 }

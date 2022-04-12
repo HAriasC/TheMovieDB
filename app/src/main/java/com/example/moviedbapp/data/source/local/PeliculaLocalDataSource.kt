@@ -2,6 +2,7 @@ package com.example.moviedbapp.data.source.local
 
 import androidx.paging.PagingSource
 import com.example.moviedbapp.domain.Pelicula
+import com.example.moviedbapp.framework.data.local.model.RemoteKeys
 import com.example.moviedbapp.framework.data.local.model.Pelicula as PeliculaDao
 import kotlinx.coroutines.flow.Flow
 
@@ -15,4 +16,8 @@ interface PeliculaLocalDataSource {
     suspend fun delete(pelicula: Pelicula)
     suspend fun clear()
     suspend fun isEmpty(): Boolean
+
+    suspend fun insertRemoteKeys(remoteKeys: List<RemoteKeys>)
+    suspend fun remoteKeysPeliculaId( id: Int): RemoteKeys?
+    suspend fun clearRemoteKeys()
 }

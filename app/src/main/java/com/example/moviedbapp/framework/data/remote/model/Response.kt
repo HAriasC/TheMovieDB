@@ -1,6 +1,5 @@
-package com.example.moviedbapp.framework.data.remote
+package com.example.moviedbapp.framework.data.remote.model
 
-import com.example.moviedbapp.framework.data.remote.model.Pelicula
 import com.google.gson.annotations.SerializedName
 
 data class Response(

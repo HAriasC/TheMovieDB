@@ -1,4 +1,4 @@
-package com.example.moviedbapp.framework.ui.main
+package com.example.moviedbapp.framework.ui.main.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -21,7 +21,6 @@ class PeliculasAdapter(private val listener: (Int, Pelicula) -> Unit) :
         override fun areContentsTheSame(oldItem: Pelicula, newItem: Pelicula): Boolean {
             return oldItem == newItem
         }
-
     }
 
     private val differ = AsyncListDiffer(this, DIFF_CALLBACK)

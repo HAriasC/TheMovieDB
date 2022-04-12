@@ -4,27 +4,30 @@ import androidx.paging.PagingSource
 import com.example.moviedbapp.data.source.local.PeliculaLocalDataSource
 import com.example.moviedbapp.data.source.remote.PeliculaRemoteDataSource
 import com.example.moviedbapp.domain.Pelicula
+import com.example.moviedbapp.framework.data.local.AppDatabase
 import com.example.moviedbapp.framework.data.local.model.Pelicula as PeliculaDao
 import kotlinx.coroutines.flow.Flow
 
 class PeliculasRepository(
+    private val database: AppDatabase,
     private val peliculaLocalDataSource: PeliculaLocalDataSource,
-    private val peliculaRemoteDataSource: PeliculaRemoteDataSource,
-    private val apiKey: String
+    private val peliculaRemoteDataSource: PeliculaRemoteDataSource
 ) {
 
     suspend fun getPeliculas(): Flow<List<Pelicula>> {
         if (peliculaLocalDataSource.isEmpty()) {
-            peliculaLocalDataSource.save(peliculaRemoteDataSource.getFromApiRest(apiKey = apiKey))
+            peliculaLocalDataSource.save(peliculaRemoteDataSource.getFromApiRest())
         }
         return peliculaLocalDataSource.getAll()
     }
 
-    suspend fun getPeliculasPaginated(): PagingSource<Int, PeliculaDao> {
+    fun getPeliculasPaginatedSource(): PagingSource<Int, PeliculaDao> {
         return peliculaLocalDataSource.getAllPaginated()
     }
 
-    suspend fun findById(id: Int): Flow<Pelicula> = peliculaLocalDataSource.findById(id)
+    fun findById(id: Int): Flow<Pelicula> = peliculaLocalDataSource.findById(id)
+
+    fun getDatabase() = database
 
     fun getLocalSource() = peliculaLocalDataSource
 

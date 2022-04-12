@@ -3,6 +3,7 @@ package com.example.moviedbapp.framework.di
 import com.example.moviedbapp.data.repositories.PeliculasRepository
 import com.example.moviedbapp.data.source.local.PeliculaLocalDataSource
 import com.example.moviedbapp.data.source.remote.PeliculaRemoteDataSource
+import com.example.moviedbapp.framework.data.local.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,8 +16,8 @@ class DataModule {
 
     @Provides
     fun peliculasRepositoryProvider(
+        database: AppDatabase,
         peliculaLocalDataSource: PeliculaLocalDataSource,
-        peliculaRemoteDataSource: PeliculaRemoteDataSource,
-        @Named("apiKey") apiKey: String
-    ) = PeliculasRepository(peliculaLocalDataSource, peliculaRemoteDataSource, apiKey)
+        peliculaRemoteDataSource: PeliculaRemoteDataSource
+    ) = PeliculasRepository(database, peliculaLocalDataSource, peliculaRemoteDataSource)
 }

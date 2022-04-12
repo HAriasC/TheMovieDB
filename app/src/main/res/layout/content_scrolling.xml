@@ -8,10 +8,33 @@
     tools:context=".framework.ui.detail.DetalleActivity"
     tools:showIn="@layout/activity_detalle">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tNota"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:textStyle="bold"
+            tools:text="Nota de la Pelicula" />
+
+        <TextView
+            android:id="@+id/tFecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:textStyle="bold"
+            tools:text="Fecha de lanzamiento" />
+
+        <TextView
+            android:id="@+id/tResumen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            tools:text="@string/large_text" />
+    </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

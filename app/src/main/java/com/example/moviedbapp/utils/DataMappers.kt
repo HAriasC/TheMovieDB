@@ -11,4 +11,4 @@ fun EntityPelicula.toDomainPelicula(): Pelicula =
     Pelicula(id, title, overview, backdrop_path, poster_path, release_date, vote_average)
 
 fun ResultPelicula.toDomainPelicula(): Pelicula =
-    Pelicula(id, title, overview, backdrop_path?:poster_path, poster_path, release_date, vote_average)
+    Pelicula(id, title, overview, backdrop_path?:poster_path?:"/nUAjSrwQldqZJVsgQs3hpQmRASS.jpg", poster_path?:"/nUAjSrwQldqZJVsgQs3hpQmRASS.jpg", release_date, vote_average)
