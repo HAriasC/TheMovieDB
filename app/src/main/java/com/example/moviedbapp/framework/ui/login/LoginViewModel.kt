@@ -49,8 +49,8 @@ class LoginViewModel @Inject constructor(private val iniciarSesion: IniciarSesio
 
     // A placeholder username validation check
     private fun isUserNameValid(username: String): Boolean {
-        return if (username.contains('@')) {
-            Patterns.EMAIL_ADDRESS.matcher(username).matches()
+        return if (username.length > 4) {
+            true
         } else {
             username.isNotBlank()
         }
@@ -58,6 +58,6 @@ class LoginViewModel @Inject constructor(private val iniciarSesion: IniciarSesio
 
     // A placeholder password validation check
     private fun isPasswordValid(password: String): Boolean {
-        return password.length > 5
+        return password.length > 4
     }
 }

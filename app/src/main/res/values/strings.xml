@@ -5,9 +5,9 @@
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Iniciar Sesión</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Bienvenido !"</string>
+    <string name="welcome">"¡Bienvenido"</string>
     <string name="invalid_username">Nombre de usuario no valido</string>
-    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="invalid_password">La contraseña debe tener al menos 5 caracteres</string>
     <string name="login_failed">"Credendiales incorrectas"</string>
     <string name="api_key">9af907de7aa7814a33a6a8a77c6939ab</string>
     <string name="title_activity_detalle">DetalleActivity</string>

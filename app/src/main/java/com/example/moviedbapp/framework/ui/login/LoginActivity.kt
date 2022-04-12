@@ -63,7 +63,6 @@ class LoginActivity : AppCompatActivity() {
             setResult(Activity.RESULT_OK)
 
             //Complete and destroy login activity once successful
-            finish()
         })
 
         username.afterTextChanged {
@@ -83,11 +82,14 @@ class LoginActivity : AppCompatActivity() {
 
             setOnEditorActionListener { _, actionId, _ ->
                 when (actionId) {
-                    EditorInfo.IME_ACTION_DONE ->
-                        loginViewModel.login(
-                            username.text.toString(),
-                            password.text.toString()
-                        )
+                    EditorInfo.IME_ACTION_DONE -> {
+                        if (login.isEnabled) {
+                            loginViewModel.login(
+                                username.text.toString(),
+                                password.text.toString()
+                            )
+                        }
+                    }
                 }
                 false
             }
@@ -104,15 +106,17 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
         val welcome = getString(R.string.welcome)
         val displayName = model.displayName
+        finish()
         // TODO : initiate successful logged in experience
         Toast.makeText(
             applicationContext,
-            "$welcome $displayName",
+            "$welcome $displayName!",
             Toast.LENGTH_LONG
         ).show()
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
+        binding.username.requestFocus()
         Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
     }
 }
