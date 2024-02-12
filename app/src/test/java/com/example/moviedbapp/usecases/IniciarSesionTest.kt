@@ -4,7 +4,6 @@ import com.example.moviedbapp.data.repositories.LoginRepository
 import com.example.moviedbapp.domain.Usuario
 import com.example.moviedbapp.framework.data.remote.model.Result
 import com.nhaarman.mockitokotlin2.whenever
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*

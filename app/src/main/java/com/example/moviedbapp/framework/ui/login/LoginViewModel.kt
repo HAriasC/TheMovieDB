@@ -3,7 +3,6 @@ package com.example.moviedbapp.framework.ui.login
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Patterns
 import androidx.lifecycle.viewModelScope
 import com.example.moviedbapp.framework.data.remote.model.Result
 
@@ -11,7 +10,6 @@ import com.example.moviedbapp.R
 import com.example.moviedbapp.usecases.IniciarSesion
 import kotlinx.coroutines.launch
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,7 +22,6 @@ class LoginViewModel @Inject constructor(private val iniciarSesion: IniciarSesio
     val loginResult: LiveData<LoginResult> = _loginResult
 
     fun login(username: String, password: String) {
-        // can be launched in a separate asynchronous job
         viewModelScope.launch {
             iniciarSesion.invoke(username, password).collect {
                 if (it is Result.Success) {
@@ -47,7 +44,6 @@ class LoginViewModel @Inject constructor(private val iniciarSesion: IniciarSesio
         }
     }
 
-    // A placeholder username validation check
     private fun isUserNameValid(username: String): Boolean {
         return if (username.length > 4) {
             true
@@ -56,7 +52,6 @@ class LoginViewModel @Inject constructor(private val iniciarSesion: IniciarSesio
         }
     }
 
-    // A placeholder password validation check
     private fun isPasswordValid(password: String): Boolean {
         return password.length > 4
     }

@@ -4,12 +4,9 @@ import com.example.moviedbapp.domain.Usuario
 import com.example.moviedbapp.framework.data.remote.model.Result
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import java.lang.Exception
 import javax.inject.Inject
+import kotlin.Exception
 
-/**
- * Class that handles authentication w/ login credentials and retrieves user information.
- */
 class LoginDataSource @Inject constructor() {
 
     suspend fun login(username: String, password: String): Flow<Result<Usuario>> {
@@ -25,7 +22,15 @@ class LoginDataSource @Inject constructor() {
         }
     }
 
+    suspend fun loginFake(username: String, password: String): Flow<Result<Usuario>> = flow {
+        if (username == "Admin" && password == "Password*123") {
+            emit(Result.Success<Usuario>(Usuario(1, "Admin", "", "admin@email.com")))
+        } else {
+            emit(Result.Error(Exception("Usuario incorrecto.")))
+        }
+    }
+
     fun logout() {
-        // TODO: revoke authentication
+
     }
 }
